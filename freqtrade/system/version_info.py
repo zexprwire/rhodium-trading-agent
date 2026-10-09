@@ -1,4 +1,5 @@
 from freqtrade import __version__
+from freqtrade.branding import PRODUCT_NAME
 
 
 def print_version_info():
@@ -12,4 +13,4 @@ def print_version_info():
     print(f"Python Version:\t\tPython {sys.version.split(' ')[0]}")
     print(f"CCXT Version:\t\t{ccxt.__version__}")
     print()
-    print(f"Freqtrade Version:\tfreqtrade {__version__}")
+    print(f"{PRODUCT_NAME}:\t{__version__}")

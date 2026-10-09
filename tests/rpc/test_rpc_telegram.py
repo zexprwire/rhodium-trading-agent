@@ -2355,11 +2355,11 @@ def test_send_msg_liquidation_warning_notification(default_conf, mocker) -> None
         "*Current Rate:* `0.92 USDT`\n"
         "*Liquidation Stop:* `0.9 USDT`\n"
         "*Remaining:* `20.00%` of the price move the margin covers\n\n"
-        "This is freqtrade's own liquidation, placed ahead of the exchange's liquidation price by "
+        "This is the bot's own liquidation, placed ahead of the exchange's liquidation price by "
         "`liquidation_buffer` - it is not an exchange liquidation. In isolated margin this "
         "position's collateral is fixed - adding funds to your account will not move its "
         "liquidation stop. Reduce or close the position, or add margin to it directly on the "
-        "exchange - freqtrade picks the changed liquidation price up on the next order fill "
+        "exchange - the bot picks the changed liquidation price up on the next order fill "
         "for this trade."
     )
 
@@ -2374,10 +2374,10 @@ def test_send_msg_liquidation_warning_notification(default_conf, mocker) -> None
         "*Current Rate:* `0.92 USDT`\n"
         "*Liquidation Stop:* `0.9 USDT`\n"
         "*Remaining:* `20.00%` of the price move the margin covers\n\n"
-        "This is freqtrade's own liquidation, placed ahead of the exchange's liquidation price by "
+        "This is the bot's own liquidation, placed ahead of the exchange's liquidation price by "
         "`liquidation_buffer` - it is not an exchange liquidation. In cross margin all "
         "positions share the same collateral. Adding margin moves the liquidation stop away "
-        "from all of them - without it freqtrade will exit each position as it reaches its "
+        "from all of them - without it the bot will exit each position as it reaches its "
         "own stop."
     )
 
@@ -3134,5 +3134,5 @@ async def test__tg_info(default_conf_usdt, mocker, update):
 
     assert context.bot.send_message.call_count == 1
     content = context.bot.send_message.call_args[1]["text"]
-    assert "Freqtrade Bot Info:\n" in content
+    assert "Rhodium Trading Agent Info:\n" in content
     assert '"chat_id": "1235"' in content
