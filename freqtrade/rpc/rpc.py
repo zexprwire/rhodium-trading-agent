@@ -16,6 +16,7 @@ from pandas import DataFrame, NaT, read_sql
 from sqlalchemy import func, select
 
 from freqtrade import __version__
+from freqtrade.branding import DEFAULT_BOT_NAME
 from freqtrade.configuration.timerange import TimeRange
 from freqtrade.constants import CANCEL_REASON, DEFAULT_DATAFRAME_COLUMNS, Config
 from freqtrade.data.history import load_data
@@ -172,7 +173,7 @@ class RPC:
             "unfilledtimeout": config.get("unfilledtimeout"),
             "use_custom_stoploss": config.get("use_custom_stoploss"),
             "order_types": config.get("order_types"),
-            "bot_name": config.get("bot_name", "freqtrade"),
+            "bot_name": config.get("bot_name", DEFAULT_BOT_NAME),
             "timeframe": config.get("timeframe"),
             "timeframe_ms": timeframe_to_msecs(config["timeframe"]) if "timeframe" in config else 0,
             "timeframe_min": (

@@ -1,14 +1,43 @@
-# ![freqtrade](https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/assets/freqtrade_poweredby.svg)
+# Rhodium Trading Agent
 
-[![Freqtrade CI](https://github.com/freqtrade/freqtrade/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/freqtrade/freqtrade/actions/workflows/ci.yml)
-[![DOI](https://joss.theoj.org/papers/10.21105/joss.04864/status.svg)](https://doi.org/10.21105/joss.04864)
-[![codecov](https://codecov.io/gh/freqtrade/freqtrade/branch/develop/graph/badge.svg?token=AD5BG3ATKI)](https://codecov.io/gh/freqtrade/freqtrade)
-[![Documentation](https://readthedocs.org/projects/freqtrade/badge/)](https://www.freqtrade.io)
-[![Discord Server](https://img.shields.io/badge/Freqtrade_Discord-4E4E4E?logo=discord)](https://discord.gg/p7nuUNVfP7)
+Rhodium Trading Agent is a crypto trading agent written in Python. It supports
+all major exchanges, can be controlled through Telegram or a web UI, and
+includes backtesting, plotting, money management and machine-learning
+strategy optimization.
 
-Freqtrade is a free and open source crypto trading bot written in Python. It is designed to support all major exchanges and be controlled via Telegram or webUI. It contains backtesting, plotting and money management tools as well as strategy optimization by machine learning.
+> **Built on [freqtrade](https://github.com/freqtrade/freqtrade).** Rhodium is a
+> fork of freqtrade and is distributed under the same
+> [GPL-3.0 license](LICENSE). The internal Python package is still named
+> `freqtrade` so that upstream releases can be merged with minimal conflicts,
+> and freqtrade's own [documentation](https://www.freqtrade.io) applies to Rhodium.
 
-![freqtrade](https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/assets/freqtrade-screenshot.png)
+## Quick start (local, dry-run)
+
+Requires Python 3.12+.
+
+```bash
+uv venv --python 3.12 .venv
+uv pip install --python .venv/bin/python -r requirements.txt -e .
+source .venv/bin/activate
+
+rhodium create-userdir --userdir user_data
+rhodium new-config --config config.json        # keep "dry_run": true
+rhodium download-data -c config.json --timeframes 5m 1h --days 60
+rhodium backtesting -c config.json -s SampleStrategy
+rhodium install-ui
+rhodium trade -c config.json -s SampleStrategy  # web UI at http://127.0.0.1:8080
+```
+
+The `freqtrade` command remains available as an alias of `rhodium`.
+
+## Keeping up with upstream
+
+```bash
+git fetch upstream
+git merge upstream/develop
+```
+
+Brand strings live in `freqtrade/branding.py`.
 
 ## Disclaimer
 

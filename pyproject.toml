@@ -140,6 +140,7 @@ Documentation = "https://freqtrade.io"
 
 
 [project.scripts]
+rhodium = "freqtrade.main:main"
 freqtrade = "freqtrade.main:main"
 
 [tool.setuptools]

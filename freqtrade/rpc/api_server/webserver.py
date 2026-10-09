@@ -9,6 +9,7 @@ from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
 
+from freqtrade.branding import PRODUCT_NAME
 from freqtrade.configuration import running_in_docker
 from freqtrade.constants import Config
 from freqtrade.exceptions import OperationalException
@@ -148,7 +149,7 @@ class ApiServer(RPCHandler):
         api_config = self._config["api_server"]
 
         self.app = FastAPI(
-            title="Freqtrade API",
+            title=f"{PRODUCT_NAME} API",
             docs_url="/docs" if api_config.get("enable_openapi", False) else None,
             redoc_url=None,
             default_response_class=FTJSONResponse,

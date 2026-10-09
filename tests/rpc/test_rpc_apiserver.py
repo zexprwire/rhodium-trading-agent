@@ -692,7 +692,7 @@ def test_api_show_config(botclient):
     assert response["timeframe_ms"] == 300000
     assert response["timeframe_min"] == 5
     assert response["state"] == "running"
-    assert response["bot_name"] == "freqtrade"
+    assert response["bot_name"] == "rhodium"
     assert response["trading_mode"] == "spot"
     assert response["strategy_version"] is None
     assert not response["trailing_stop"]

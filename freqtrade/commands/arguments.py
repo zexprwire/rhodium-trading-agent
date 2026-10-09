@@ -8,6 +8,7 @@ from functools import partial
 from pathlib import Path
 from typing import Any
 
+from freqtrade.branding import CLI_NAME, DESCRIPTION
 from freqtrade.commands.cli_options import AVAILABLE_CLI_OPTIONS
 from freqtrade.constants import DEFAULT_CONFIG
 
@@ -377,9 +378,7 @@ class Arguments:
         self._build_args(optionlist=ARGS_STRATEGY, parser=strategy_group)
 
         # Build main command
-        self.parser = ArgumentParser(
-            prog="freqtrade", description="Free, open source crypto trading bot"
-        )
+        self.parser = ArgumentParser(prog=CLI_NAME, description=DESCRIPTION)
         self._build_args(optionlist=ARGS_MAIN, parser=self.parser)
 
         from freqtrade.commands import (

@@ -35,6 +35,7 @@ from telegram.ext import Application, CallbackContext, CallbackQueryHandler, Com
 from telegram.helpers import escape_markdown
 
 from freqtrade.__init__ import __version__
+from freqtrade.branding import PRODUCT_NAME
 from freqtrade.constants import DUST_PER_COIN, Config
 from freqtrade.enums import MarketDirection, RPCMessageType, SignalDirection, TradingMode
 from freqtrade.exceptions import OperationalException
@@ -561,7 +562,7 @@ class Telegram(RPCHandler):
             )
             advice = (
                 "In cross margin all positions share the same collateral. Adding margin moves "
-                "the liquidation stop away from all of them - without it freqtrade will exit "
+                "the liquidation stop away from all of them - without it the bot will exit "
                 "each position as it reaches its own stop."
             )
         else:
@@ -572,7 +573,7 @@ class Telegram(RPCHandler):
             advice = (
                 "In isolated margin this position's collateral is fixed - adding funds to "
                 "your account will not move its liquidation stop. Reduce or close the "
-                "position, or add margin to it directly on the exchange - freqtrade picks "
+                "position, or add margin to it directly on the exchange - the bot picks "
                 "the changed liquidation price up on the next order fill for this trade."
             )
 
@@ -581,7 +582,7 @@ class Telegram(RPCHandler):
             f"*Current Rate:* `{fmt_coin2(msg['current_rate'], msg['quote_currency'])}`\n"
             f"*Liquidation Stop:* `{fmt_coin2(msg['liquidation_price'], msg['quote_currency'])}`\n"
             f"*Remaining:* `{msg['remaining_ratio']:.2%}` of the price move the margin covers\n\n"
-            "This is freqtrade's own liquidation, placed ahead of the exchange's liquidation "
+            "This is the bot's own liquidation, placed ahead of the exchange's liquidation "
             f"price by `liquidation_buffer` - it is not an exchange liquidation. {advice}"
         )
 
@@ -2314,7 +2315,7 @@ class Telegram(RPCHandler):
             update.effective_user.id if topic_id is not None and update.effective_user else None
         )
 
-        msg = f"""Freqtrade Bot Info:
+        msg = f"""{PRODUCT_NAME} Info:
         ```json
             {{
                 "enabled": true,

@@ -13,6 +13,7 @@ if sys.version_info < (3, 12):  # pragma: no cover  # noqa: UP036
     sys.exit("Freqtrade requires Python version >= 3.12")
 
 from freqtrade import __version__
+from freqtrade.branding import CLI_NAME, PRODUCT_NAME
 from freqtrade.commands import Arguments
 from freqtrade.constants import DOCS_LINK
 from freqtrade.exceptions import ConfigurationError, FreqtradeException, OperationalException
@@ -46,19 +47,19 @@ def main(sysargv: list[str] | None = None) -> None:
             print_version_info()
             return_code = 0
         elif "func" in args:
-            logger.info(f"freqtrade {__version__}")
+            logger.info(f"{PRODUCT_NAME} {__version__}")
             gc_set_threshold()
             set_mp_start_method()
             return_code = args["func"](args)
         else:
             # No subcommand was issued.
             raise OperationalException(
-                "Usage of Freqtrade requires a subcommand to be specified.\n"
+                f"Usage of {PRODUCT_NAME} requires a subcommand to be specified.\n"
                 "To have the bot executing trades in live/dry-run modes, "
-                "depending on the value of the `dry_run` setting in the config, run Freqtrade "
-                "as `freqtrade trade [options...]`.\n"
+                "depending on the value of the `dry_run` setting in the config, run "
+                f"`{CLI_NAME} trade [options...]`.\n"
                 "To see the full list of options available, please use "
-                "`freqtrade --help` or `freqtrade <command> --help`."
+                f"`{CLI_NAME} --help` or `{CLI_NAME} <command> --help`."
             )
 
     except KeyboardInterrupt:
