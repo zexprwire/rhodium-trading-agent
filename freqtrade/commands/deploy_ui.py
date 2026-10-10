@@ -3,6 +3,7 @@ from pathlib import Path
 
 import requests
 
+from freqtrade.branding import UI_REPO
 from freqtrade.exceptions import OperationalException
 
 
@@ -57,7 +58,7 @@ def download_and_install_ui(dest_folder: Path, dl_url: str, version: str):
 
 
 def get_ui_download_url(version: str | None, prerelease: bool) -> tuple[str, str]:
-    base_url = "https://api.github.com/repos/freqtrade/frequi/"
+    base_url = f"https://api.github.com/repos/{UI_REPO}/"
     # Get base UI Repo path
 
     resp = requests.get(f"{base_url}releases", timeout=req_timeout)
